@@ -2,7 +2,7 @@ package set
 
 // RuneSet rune set.
 type RuneSet struct {
-	list map[rune]struct{} //empty structs occupy 0 memory
+	list map[rune]struct{}
 }
 
 // Has returns true if set contains v value.
@@ -38,9 +38,7 @@ func NewRuneSet() *RuneSet {
 	return s
 }
 
-//optional functionalities
-
-//AddMulti Add multiple values in the RuneSet.
+// AddMulti Add multiple values in the RuneSet.
 func (s *RuneSet) AddMulti(list ...rune) {
 	for _, v := range list {
 		s.Add(v)
@@ -50,7 +48,7 @@ func (s *RuneSet) AddMulti(list ...rune) {
 // RuneFilterFunc defines a function that filters out certain values.
 type RuneFilterFunc func(v rune) bool
 
-// Filter returns a subRuneSet, that contains only the values that satisfies the given predicate P
+// Filter returns a subset, that contains only the values that satisfy the given predicate P
 func (s *RuneSet) Filter(P RuneFilterFunc) *RuneSet {
 	res := NewRuneSet()
 	for v := range s.list {

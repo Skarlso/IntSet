@@ -38,9 +38,7 @@ func NewIntSet() *IntSet {
 	return s
 }
 
-//optional functionalities
-
-//AddMulti Add multiple values in the IntSet.
+// AddMulti Add multiple values in the IntSet.
 func (s *IntSet) AddMulti(list ...int) {
 	for _, v := range list {
 		s.Add(v)
@@ -50,7 +48,7 @@ func (s *IntSet) AddMulti(list ...int) {
 // IntFilterFunc defines a function that filters out certain values.
 type IntFilterFunc func(v int) bool
 
-// Filter returns a subIntSet, that contains only the values that satisfies the given predicate P
+// Filter returns a subset, that contains only the values that satisfy the given predicate P
 func (s *IntSet) Filter(P IntFilterFunc) *IntSet {
 	res := NewIntSet()
 	for v := range s.list {
@@ -87,7 +85,7 @@ func (s *IntSet) Intersect(s2 *IntSet) *IntSet {
 	return res
 }
 
-// Difference returns the subIntSet from s, that doesn't exists in s2 (param)
+// Difference returns the subset from s that doesn't exists in s2.
 func (s *IntSet) Difference(s2 *IntSet) *IntSet {
 	res := NewIntSet()
 	for v := range s.list {
